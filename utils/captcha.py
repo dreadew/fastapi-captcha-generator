@@ -67,8 +67,8 @@ def gen_gradient_bg(width, height):
 
 	return image
 
-async def gen_captcha_img(icons_count: int = 3, bg_height: int = 200, bg_width: int = 400):
-	bg = gen_gradient_bg(bg_height, bg_width)
+async def gen_captcha_img(icons_count: int = 3, bg_width: int = 400, bg_height: int = 200):
+	bg = gen_gradient_bg(bg_width, bg_height)
 	bg_w, bg_h = bg.size
 
 	icon_locations = []
