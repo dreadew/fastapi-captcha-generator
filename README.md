@@ -67,3 +67,5 @@ GET http://localhost:3030/utils/captcha?icons_count=1 HTTP/1.1
 ## Иконки для генерации находятся в папке ./png
 
 Добавлять иконки нужно строго одного размера (прим. 24x24)
+
+## Пример реализации клиентской части на React.js в репозитории: [https://github.com/dreadew/react-captcha-test]
