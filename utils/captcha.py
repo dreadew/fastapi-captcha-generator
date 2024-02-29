@@ -49,17 +49,6 @@ def gen_gradient_bg(width, height):
 	image = image.filter(ImageFilter.GaussianBlur(radius=np.random.randint(5, 15)))
 
 	draw = ImageDraw.Draw(image)
-
-	'''for _ in range(np.random.randint(5, 10)):
-		length = np.random.randint(50, 200)
-		angle = np.random.randint(0, 360)
-		x = np.random.randint(0, width)
-		y = np.random.randint(0, height)
-		draw.line(
-			[(x, y), (x+int(length*np.cos(np.radians(angle))), y+int(length*np.sin(np.radians(angle))))],
-			fill = (np.random.randint(256), np.random.randint(256), np.random.randint(256)),
-			width = np.random.randint(2, 24)
-		)'''
 	
 	# Генерация точек в рандомных местах с рандомным цветом
 	for _ in range(np.random.randint(10, 60)):
@@ -78,15 +67,13 @@ def gen_gradient_bg(width, height):
 
 	return image
 
-async def gen_captcha_img():
-	bg = gen_gradient_bg(400, 200)
+async def gen_captcha_img(icons_count: int = 3, bg_height: int = 200, bg_width: int = 400):
+	bg = gen_gradient_bg(bg_height, bg_width)
 	bg_w, bg_h = bg.size
 
 	icon_locations = []
 
-	random_count = random.randrange(3, 6)
-
-	indexes = get_random_images(random_count)
+	indexes = get_random_images(icons_count)
 
 	for idx, el in enumerate(indexes):
 		icon = Image.open(f'./png/{el}', 'r')
@@ -132,7 +119,3 @@ async def gen_captcha_img():
 			icons_b64.append(base64.b64encode(image).decode('utf-8'))
 
 	return image_b64, icon_locations, icons_b64
-
-#print(get_random_images(4))
-#location = gen_captcha_img()
-#print(location)
